@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Notebook</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f7f7f7;
+        }
+        .container {
+            background: #fff;
+            padding: 30px 35px;
+            border-radius: 12px;
+            box-shadow: 0 2px 16px #0002;
+            text-align: center;
+        }
+        .virtual-img {
+            width: 60px;
+            margin-bottom: 16px;
+        }
+        h2 {
+            margin-top: 0;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            display: inline-block;
+            text-align: left;
+        }
+        li {
+            background: #eee;
+            margin-bottom: 10px;
+            padding: 8px 18px 8px 8px;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        button {
+            margin-left: 8px;
+            background-color: #e44c4c;
+            color: white;
+            border: none;
+            padding: 5px 12px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        button.addBtn {
+            background-color: #4caf50;
+            margin-top: 7px;
+            margin-bottom: 16px;
+        }
+        input {
+            padding: 8px;
+            width: 60%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Virtual image (can be changed to any image URL) -->
+        <img src="https://cdn-icons-png.flaticon.com/512/942/942751.png" alt="Virtual Image" class="virtual-img" />
+        <h2>My To-Do List</h2>
+        <input type="text" id="myInput" placeholder="Title...">
+        <button class="addBtn" onclick="newElement()">Add</button>
+        <ul id="myUL">
+            <!-- Sample tasks -->
+        </ul>
+    </div>
+    <script>
+        function newElement() {
+            var inputValue = document.getElementById("myInput").value;
+            if (inputValue === '') {
+                alert("You must write something!");
+                return;
+            }
+            var li = document.createElement("li");
+            li.textContent = inputValue;
+            var delBtn = document.createElement("button");
+            delBtn.textContent = "Delete";
+            delBtn.onclick = function() {
+                this.parentElement.remove();
+            };
+            li.appendChild(delBtn);
+            document.getElementById("myUL").appendChild(li);
+            document.getElementById("myInput").value = "";
+        }
+    </script>
+</body>
+</html>
